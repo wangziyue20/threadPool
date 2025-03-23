@@ -156,7 +156,7 @@ void* manager(void* arg){
         pthread_mutex_unlock(&pool->mutexBusy);
         
         //1.任务队列>线程数，线程数小于最大值
-        if(liveNum < pool->maxNum && liveNum < queueSize){   
+        if(liveNum-busyNum < pool->maxNum && liveNum < queueSize){   
             pthread_mutex_lock(&pool->mutexPool);  
 
             int counter = 0;
